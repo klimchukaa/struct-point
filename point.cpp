@@ -23,6 +23,8 @@ public:
     // Functions
     int get_length();
     double get_angle(point);
+    // Out
+    friend ostream& operator<<(ostream&, const point&);
 };
 
 point::point(int xc, int yc)
@@ -69,6 +71,11 @@ bool point::operator==(point a) {
 
 bool point::operator!=(point a) {
     return (x != a.x) || (y != a.y);
+}
+
+ostream& operator<<(ostream& out, const point& a)
+{
+    return out << "x: " << a.x << " y: " << a.y << "\n";
 }
 
 signed main() {
