@@ -6,18 +6,21 @@ class point
 {
     double x, y;
 public:
-    // Конструкторы
+    // Constructors
     point(int xc, int yc);
     point();
-    // Методы
+    // Methods
     int get_x() { return x; }
     int get_y() { return y; }
-    // Операторы
+    // Operators
     point operator+(point);
     point operator-(point);
     point operator*(int);
     int operator*(point);
     int operator^(point);
+    // Functions
+    int get_length();
+    double get_angle(point);
 };
 
 point::point(int xc, int yc)
@@ -48,6 +51,14 @@ int point::operator*(point a) {
 
 int point::operator^(point a) {
     return x * a.y - y * a.x;
+}
+
+int point::get_length() {
+    return x * x + y * y;
+}
+
+double point::get_angle(point a) {
+    return acos(((*this) * a + 0.0) / sqrt((*this).get_length()) / sqrt(a.get_length()));
 }
 
 signed main() {
