@@ -18,6 +18,8 @@ public:
     point operator*(int);
     int operator*(point);
     int operator^(point);
+    bool operator==(point);
+    bool operator!=(point);
     // Functions
     int get_length();
     double get_angle(point);
@@ -59,6 +61,14 @@ int point::get_length() {
 
 double point::get_angle(point a) {
     return acos(((*this) * a + 0.0) / sqrt((*this).get_length()) / sqrt(a.get_length()));
+}
+
+bool point::operator==(point a) {
+    return (x == a.x) && (y == a.y);
+}
+
+bool point::operator!=(point a) {
+    return (x != a.x) || (y != a.y);
 }
 
 signed main() {
