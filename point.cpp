@@ -21,7 +21,7 @@ public:
     bool operator==(point);
     bool operator!=(point);
     // Functions
-    int get_length();
+    double get_length();
     double get_angle(point);
     // Out
     friend ostream& operator<<(ostream&, const point&);
@@ -57,12 +57,12 @@ int point::operator^(point a) {
     return x * a.y - y * a.x;
 }
 
-int point::get_length() {
-    return x * x + y * y;
+double point::get_length() {
+    return sqrt(x * x + y * y + 0.0);
 }
 
 double point::get_angle(point a) {
-    return acos(((*this) * a + 0.0) / sqrt((*this).get_length()) / sqrt(a.get_length()));
+    return acos(((*this) * a + 0.0) / (*this).get_length() / a.get_length());
 }
 
 bool point::operator==(point a) {
@@ -79,5 +79,16 @@ ostream& operator<<(ostream& out, const point& a)
 }
 
 signed main() {
+    int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
+    point v1(x1, y1), v2(x2, y2);
+    cout << "Length of v1: " << v1.get_length() << "\n";
+    cout << "Length of v2: " << v2.get_length() << "\n";
+    cout << "Angle beetwen vectors: " << v1.get_angle(v2) << "\n";
+    cout << "v1 + v2: " << v1 + v2;
+    cout << "v1 - v2: " << v1 - v2;
+    cout << "v1 * v2: " << v1 * v2 << "\n";
+    cout << "v1 ^ v2: " << (v1 ^ v2) << "\n";
+    if (v1 == v2) cout << "v1 is equal v2\n";
+    if (v1 != v2) cout << "v1 is not equal v2\n";
     return 0;
 }
